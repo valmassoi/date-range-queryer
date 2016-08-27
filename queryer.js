@@ -39,7 +39,7 @@ function addDate(input) {
     start: Number(params[2]),// inclusive FLOAT
     end: Number(params[3])// exclusive
   }
-  events.push(newEvent)
+  events.push(newEvent)//BIG O notation
 }
 
 function queryDate(input) {
@@ -59,7 +59,7 @@ function queryDate(input) {
 }
 
 function clearDate() {
-  events = []
+  events = []//BIG O notation
   console.log("CLEAR")
 }
 
