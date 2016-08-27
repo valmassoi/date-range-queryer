@@ -24,7 +24,7 @@ CLEAR
 https://github.com/valmassoi/sourcegraph-date-range-queryer
 `
 
-let events = [] //init calendar
+let events = [] // init calendar
 
 function addDate(input) {
   const params = input.split(" ") // ADD $ID $START $END
@@ -36,8 +36,8 @@ function addDate(input) {
     console.log(input)
   const newEvent = {
     id: params[1],
-    start: Number(params[2]),//inclusive FLOAT
-    end: Number(params[3])//exclusive
+    start: Number(params[2]),// inclusive FLOAT
+    end: Number(params[3])// exclusive
   }
   events.push(newEvent)
 }

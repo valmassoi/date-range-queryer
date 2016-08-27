@@ -8,7 +8,12 @@ $ git clone https://github.com/valmassoi/sourcegraph-date-range-queryer sourcegr
 $ cd sourcegraph-date-range-queryer
 
 # Install dependencies
-$ node -v
+ # Check Node is v6.x.x for ES6
+ $ node -v
+ # If on earlier version of node upgrade with Node Version Manger:
+ http://stackoverflow.com/a/12570971/3046904
+ # Install Node the first time:
+ https://nodejs.org/en/download/current/
 
 # Run program
 $ node queryer.js
