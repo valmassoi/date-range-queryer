@@ -8,6 +8,7 @@ $ git clone https://github.com/valmassoi/sourcegraph-date-range-queryer sourcegr
 $ cd sourcegraph-date-range-queryer
 
 # Install dependencies
+$ npm install
  # Check Node is v6.x.x for ES6
  $ node -v
  # If on earlier version of node upgrade with Node Version Manger:
@@ -17,18 +18,25 @@ $ cd sourcegraph-date-range-queryer
 
 # Run program
 $ node queryer.js
+or
+$ npm start
 ```
 
 ## Runtime and space analysis
 ADD:
-- push new event object to a 2d array >> 0(1)?  
+- add new event object to a 2d array using quicksort-style insertion >> O(log(n))  
 
 QUERY:
-- uses the 5th edition ECMA-262 standard `forEach` method to iterate the ADDed events, pushing valid IDs to an array. This loop is of O(n). TODO increase efficiency to O(log(n))  
-- the valid ID array gets alphabetized using the `sort` method >> O(n) TODO increase efficiency to O(log(n))  
+- uses binary search algorithm to find index where `end time > query time` >> O(log(n))
+- the valid ID array gets alphabetized using the `sort` method >> O(n) but n is small (usually < 20)
 
 CLEAR:
 - clears out the events using `events = []` >> 0(1)?   
 
 ## Performance requirements justification
-TODO improve efficiency from O(n) to O(log(n)) by sorting during insertion
+I used the [binary-search](https://www.npmjs.com/package/binary-search) package. Note: I did not check the validity of the code but download stats show it is widely used
+https://en.wikipedia.org/wiki/Binary_search_algorithm
+
+`there typically are no more than 20 events that overlap that point` So sorting the valid ids array using built in .sort() method should have good performance
+
+TODO: sort by start time too?

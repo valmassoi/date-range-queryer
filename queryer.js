@@ -1,5 +1,6 @@
 // https://nodejs.org/api/readline.html
 const readline = require('readline')
+const bs = require('binary-search')
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
@@ -28,7 +29,7 @@ let events = [] // init calendar
 
 function addDate(input) {
   const params = input.split(" ") // ADD $ID $START $END
-  if (params.length !== 4) {// TODO other checks params[2||3] not a number
+  if (params.length !== 4 || Number(params[2]) > Number(params[3])) {
     console.log("Invalid input, type 'HELP' for commands.")
     return
   }
@@ -39,27 +40,72 @@ function addDate(input) {
     start: Number(params[2]),// inclusive FLOAT
     end: Number(params[3])// exclusive
   }
-  events.push(newEvent)//BIG O notation
+
+  // -- quicksort-style insertion -- //
+  // -- O(log(n)) -- //
+  // -- sort by end time -- //
+  // TODO? also sort by start time
+  function insert(element, array) {
+    if (array.length > 0 && array[0].end > element.end) // check [0]
+      array.unshift(element)
+    else
+      array.splice(locationOf(element, array) + 1, 0, element)
+    return array
+  }
+
+  function locationOf(element, array, beg, done) {
+    beg = beg || 0
+    done = done || array.length
+    var pivot = parseInt(beg + (done - beg) / 2, 10)
+    if (done-beg <= 1 || array[pivot].end === element.end) return pivot
+    if (array[pivot].end < element.end) {
+      return locationOf(element, array, pivot, done)
+    } else {
+      return locationOf(element, array, beg, pivot)
+    }
+  }
+
+  events = insert(newEvent, events)
+
 }
 
+// -- can use binary search algo O(log(n)), because array is pre sorted by end time -- //
 function queryDate(input) {
+
   const params = input.split(" ") // QUERY $TIME
+  if (params.length === 1) {
+    console.log(`${input}:`)
+    return
+  }
+  if (params.length !== 2) {
+    console.log("Invalid input, type 'HELP' for commands.")
+    return
+  }
   const time = Number(params[1]) //FLOAT
 
+  let startIndex = bs(events, time, function(a, b) { return a.end - b; })
+  startIndex = (startIndex < 0) ? (startIndex*-1)-1 : startIndex+1
+  const possibleEvents = events.slice(startIndex, events.length)
+  // console.log(possibleEvents)
+
+  //this possibleEvents array contains end times greater than the query time
+  //but start time might be GREATER than the query time
+  //TODO? lower events.length number in slice by quicksorting start time
+  
   ids = []
-  events.forEach( event => { //BIG O notation
+  possibleEvents.forEach( event => { //BIG O notation
     if (time >= event.start && time < event.end)
       ids.push(event.id)
   })
 
-  ids.sort() //BIG O notation
+  ids.sort() //BIG O notation: only 20ish so should be fine
 
   idsSpaceDelimited = ids.join(" ")
-  console.log(`${input}: ${idsSpaceDelimited}`)
+  console.log(`QUERY: ${idsSpaceDelimited}`)
 }
 
 function clearDate() {
-  events = []//BIG O notation
+  events = []
   console.log("CLEAR")
 }
 
@@ -94,7 +140,7 @@ rl.on('line', (line) => {
       rl.close()
       break
     case input === '':
-      console.log('');
+      console.log('')
       break
     default:
       console.log(`Say what? '${input}' is not a valid command. Type HELP for commands.`)

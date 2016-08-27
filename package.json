@@ -1,0 +1,27 @@
+{
+  "name": "sourcegraph-date-range-queryer",
+  "version": "0.1.0",
+  "description": "Coding challenge",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./queryer.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valmassoi/sourcegraph-date-range-queryer.git"
+  },
+  "author": "valmassoi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/valmassoi/sourcegraph-date-range-queryer/issues"
+  },
+  "homepage": "https://github.com/valmassoi/sourcegraph-date-range-queryer#readme",
+  "dependencies": {
+    "binary-search": "^1.3.2"
+  },
+  "engines": {
+    "node": "^6.2.0"
+  },
+  "devDependencies": {}
+}
