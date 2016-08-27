@@ -11,8 +11,9 @@ $ cd sourcegraph-date-range-queryer
 $ npm install
  # Check Node is v^6.2.0 for ES6
  $ node -v
- # If on earlier version of node upgrade with Node Version Manger:
+ # If on earlier version of node upgrade with Node Version Manager:
  http://stackoverflow.com/a/12570971/3046904
+ $ nvm use 6
  # Install Node the first time:
  https://nodejs.org/en/download/current/
 

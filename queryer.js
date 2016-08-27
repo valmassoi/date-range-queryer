@@ -1,4 +1,3 @@
-// https://nodejs.org/api/readline.html
 const readline = require('readline')
 const bs = require('binary-search')
 const rl = readline.createInterface({
