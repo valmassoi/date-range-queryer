@@ -4,13 +4,14 @@ A coding challenge [prompt](./prompt/README.md) from [sourcegraph](https://githu
 
 ## Compile and run
 ```bash
-git clone https://github.com/valmassoi/sourcegraph-date-range-queryer sourcegraph-date-range-queryer
-cd sourcegraph-date-range-queryer
+$ git clone https://github.com/valmassoi/sourcegraph-date-range-queryer sourcegraph-date-range-queryer
+$ cd sourcegraph-date-range-queryer
 
 # Install dependencies
+$ node -v
 
-# Run
-node queryer.js
+# Run program
+$ node queryer.js
 ```
 
 ## Runtime and space analysis
