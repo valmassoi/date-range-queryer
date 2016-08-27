@@ -94,7 +94,7 @@ function queryDate(input) {
   ids.sort() //BIG O notation: only 20ish so should be fine
 
   idsSpaceDelimited = ids.join(" ")
-  console.log(`QUERY: ${idsSpaceDelimited}`)
+  console.log(`${input}: ${idsSpaceDelimited}`)
 }
 
 function clearDate() {
