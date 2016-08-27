@@ -37,14 +37,13 @@ function addDate(input) {
     console.log(input)
   const newEvent = {
     id: params[1],
-    start: Number(params[2]),// inclusive FLOAT
+    start: Number(params[2]),// inclusive
     end: Number(params[3])// exclusive
   }
 
   // -- quicksort-style insertion -- //
   // -- O(log(n)) -- //
   // -- sort by end time -- //
-  // TODO? also sort by start time
   function insert(element, array) {
     if (array.length > 0 && array[0].end > element.end) // check [0]
       array.unshift(element)
@@ -74,26 +73,21 @@ function queryDate(input) {
 
   const params = input.split(" ") // QUERY $TIME
   if (params.length === 1) {
-    console.log(`${input}:`)
+    console.log(`QUERY:`)
     return
   }
   if (params.length !== 2) {
     console.log("Invalid input, type 'HELP' for commands.")
     return
   }
-  const time = Number(params[1]) //FLOAT
+  const time = Number(params[1])
 
   let startIndex = bs(events, time, function(a, b) { return a.end - b; })
   startIndex = (startIndex < 0) ? (startIndex*-1)-1 : startIndex+1
   const possibleEvents = events.slice(startIndex, events.length)
-  // console.log(possibleEvents)
 
-  //this possibleEvents array contains end times greater than the query time
-  //but start time might be GREATER than the query time
-  //TODO? lower events.length number in slice by quicksorting start time
-  
   ids = []
-  possibleEvents.forEach( event => { //BIG O notation
+  possibleEvents.forEach( event => {
     if (time >= event.start && time < event.end)
       ids.push(event.id)
   })
