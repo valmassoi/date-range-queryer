@@ -1,11 +1,11 @@
-# sourcegraph-date-range-queryer
+# date-range-queryer
 
-A coding challenge [prompt](./prompt/README.md) from [sourcegraph](https://github.com/sourcegraph). Program is built on `Node.js` using `Readline`.
+A coding challenge [prompt](./prompt/README.md). Program is built on `Node.js` using `Readline`.
 
 ## Install and run program
 ```bash
-$ git clone https://github.com/valmassoi/sourcegraph-date-range-queryer sourcegraph-date-range-queryer
-$ cd sourcegraph-date-range-queryer
+$ git clone https://github.com/valmassoi/date-range-queryer date-range-queryer
+$ cd date-range-queryer
 
 # Install dependencies
 $ npm install

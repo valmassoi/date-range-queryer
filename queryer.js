@@ -3,13 +3,13 @@ const bs = require('binary-search')
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
-  prompt: 'SGquery> '
+  prompt: 'query> '
 })
 
 rl.prompt()
 
 const helpReadme = `
-sourcegraph-date-range-queryer by
+date-range-queryer by
 
 --  ██╗   ██╗ █████╗ ██╗     ███╗   ███╗ █████╗ ███████╗███████╗ ██████╗ ██╗
 --  ██║   ██║██╔══██╗██║     ████╗ ████║██╔══██╗██╔════╝██╔════╝██╔═══██╗██║
@@ -21,7 +21,7 @@ sourcegraph-date-range-queryer by
 ADD $ID $START $END
 QUERY $TIME
 CLEAR
-https://github.com/valmassoi/sourcegraph-date-range-queryer
+https://github.com/valmassoi/date-range-queryer
 `
 
 let events = [] // init calendar
